@@ -3,9 +3,12 @@ import {useAppSelector} from "../../../hooks/reducer";
 import {Button} from "../../../ui";
 import Logo from "./Logo";
 import NavList from "./Navlist";
+import {useNavigate} from "react-router-dom";
+import {paths} from "../../../utils/paths";
 
 export const Navbar = () => {
   const {isAuth} = useAppSelector(state => state.user);
+  const navigate = useNavigate();
 
   return (
     <nav
@@ -15,11 +18,11 @@ export const Navbar = () => {
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-2">
           {isAuth ?
             <>
-              <Button>Admin panel</Button>
+              <Button onClick={() => navigate(paths.ADMIN_ROUTE)}>Admin panel</Button>
               <Button>Log out</Button>
             </>
             :
-            <Button>Log in</Button>
+            <Button onClick={() => navigate(paths.LOGIN_ROUTE)}>Log in</Button>
           }
         </div>
         <NavList/>

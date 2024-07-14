@@ -1,7 +1,10 @@
 import React from 'react';
 import {FormAuth} from "../modules/FormAuth";
+import {useAppDispatch} from "../hooks/reducer";
 
 export const Registration = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <div className="flex items-center justify-center h-screen pt-32">
       <div
@@ -10,7 +13,7 @@ export const Registration = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Register an account for yourself
           </h1>
-          <FormAuth/>
+          <FormAuth />
         </div>
       </div>
     </div>

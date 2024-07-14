@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {paths} from "../utils/paths";
 
 export const DeviceCard: React.FC<IDevice> = ({name, img, rating, id, price}) => {
-  const deviceLink = paths.DEVICE_ROUTE + `/:${id}`;
+  const deviceLink = paths.DEVICE_ROUTE + `/${id}`;
 
   return (
     <div

@@ -20,7 +20,7 @@ export interface IDevice {
   price: number;
   rating: number;
   img: string;
-  info?: IInfo;
+  info?: IInfo[];
 }
 
 export interface DeviceState {
