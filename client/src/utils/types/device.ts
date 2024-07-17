@@ -23,6 +23,14 @@ export interface IDevice {
   info?: IInfo[];
 }
 
+export interface ICreateDevice {
+  name: string;
+  price: number;
+  rating: number;
+  img: string;
+  info?: IInfo[];
+}
+
 export interface DeviceState {
   types: IType[];
   devices: IDevice[];

@@ -1,9 +1,10 @@
 import React from 'react';
 import {Checkbox} from "../../../ui";
 import {useAppSelector} from "../../../hooks/reducer";
+import {DeviceApi} from "../../../store/services/DeviceService";
 
 export const Category = () => {
-  const {types} = useAppSelector(state => state.device);
+  const {data: types} = DeviceApi.useGetTypesQuery({});
 
   return (
     <div className="z-10 w-56 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
@@ -11,7 +12,7 @@ export const Category = () => {
         Category
       </h6>
       <ul className="space-y-2 text-sm" aria-labelledby="dropdownDefault">
-        {types.map(type => (
+        {types?.map(type => (
           <li key={type.id} className="flex items-center">
             <Checkbox name="radio-category" value={type.name} onChange={() => {}}/>
           </li>

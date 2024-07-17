@@ -1,9 +1,7 @@
 import React from 'react';
 import {FormAuth} from "../modules/FormAuth";
-import {useAppDispatch} from "../hooks/reducer";
 
 export const Registration = () => {
-  const dispatch = useAppDispatch();
 
   return (
     <div className="flex items-center justify-center h-screen pt-32">

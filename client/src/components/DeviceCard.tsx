@@ -10,11 +10,12 @@ export const DeviceCard: React.FC<IDevice> = ({name, img, rating, id, price}) =>
     <div
       className="max-w-[calc(25%-48px)] w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <Link to={deviceLink}>
-        <img className="rounded-t-lg w-full" src={img} alt={name}/>
+        <img className="rounded-t-lg w-full" src={`${process.env.REACT_APP_API_URL + "/" + img}`} alt={name}/>
       </Link>
       <div className="p-5">
-        <Link to={deviceLink}>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
+        <Link className="mb-2 flex items-center justify-between" to={deviceLink}>
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
+          <span className="block mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{price} р.</span>
         </Link>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
           acquisitions of 2021 so far, in reverse chronological order.</p>

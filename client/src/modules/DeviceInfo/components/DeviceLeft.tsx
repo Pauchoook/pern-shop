@@ -1,11 +1,15 @@
 import React from 'react';
 import {Button} from "../../../ui";
 
-const DeviceLeft = () => {
+interface DeviceLeftProps {
+  img: string;
+}
+
+const DeviceLeft: React.FC<DeviceLeftProps> = ({img}) => {
   return (
     <div className="px-4 max-w-sm w-full">
       <img className="w-full rounded-lg mb-4"
-           src="https://msk-apple.ru/image/cache/catalog/apple12/apple%2012%20pro/apple12pro_grey_1-350x450.jpg"
+           src={`${process.env.REACT_APP_API_URL}/${img}`}
            alt="Product Image"/>
       <Button className="w-full">Add to Cart</Button>
     </div>

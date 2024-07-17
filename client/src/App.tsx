@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {AppRouter} from "./components";
 import {BrowserRouter} from "react-router-dom";
-import {Provider} from "react-redux";
-import store from "./store";
 import {Navbar} from "./modules";
+import {useAppDispatch} from "./hooks/reducer";
+import {check} from "./store/reducers/user/ActionsCreators";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(check());
+  }, []);
+
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Navbar />
-        <AppRouter/>
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <Navbar/>
+      <AppRouter/>
+    </BrowserRouter>
   );
 }
 

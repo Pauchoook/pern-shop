@@ -7,6 +7,7 @@ import AddInfo from "./AddInfo";
 import {ICreateInfoItem} from "../helpers";
 import AddImage from "./AddImage";
 import Dropdowns from "./Dropdowns";
+import {DeviceApi} from "../../../store/services/DeviceService";
 
 interface CreateTypeProps {
   onHide: () => void;
@@ -17,7 +18,8 @@ const CreateDevice: React.FC<CreateTypeProps> = ({onHide}) => {
   const [currentBrandId, setCurrentBrandId] = useState(0);
   const [isType, setIsType] = useState(false);
   const [currentTypeId, setCurrentTypeId] = useState(0);
-  const {brands, types} = useAppSelector(state => state.device);
+  const {data: brands} = DeviceApi.useGetBrandsQuery({});
+  const {data: types} = DeviceApi.useGetTypesQuery({});
   const [srcImage, setSrcImage] = useState("");
   const [info, setInfo] = useState<ICreateInfoItem[]>([]);
 
@@ -61,10 +63,10 @@ const CreateDevice: React.FC<CreateTypeProps> = ({onHide}) => {
         }} label="Name device" type="text" name="name-device" required={true} placeholder="..."/>
         <Input onChange={(e) => {
         }} label="Price device" type="number" name="price-device" required={true} placeholder="..."/>
-        <Dropdowns changeType={changeType} changeBrand={changeBrand} brands={brands} types={types} isBrand={isBrand}
+        <Dropdowns changeType={changeType} changeBrand={changeBrand} brands={brands ? brands : []} types={types ? types : []} isBrand={isBrand}
                    isType={isType}
-                   currentBrand={currentBrandId > 0 ? `: ${brands[currentBrandId - 1].name}` : ""}
-                   currentType={currentTypeId > 0 ? `: ${types[currentTypeId - 1].name}` : ""}
+                   currentBrand={currentBrandId > 0 ? `: ${brands && brands[currentBrandId - 1].name}` : ""}
+                   currentType={currentTypeId > 0 ? `: ${types && types[currentTypeId - 1].name}` : ""}
                    handlerBrand={handlerBrand} handlerType={handlerType}/>
         <AddInfo addInfo={addInfo} removeInfo={removeInfo} info={info}/>
         <AddImage changeImage={changeImage} srcImage={srcImage}/>

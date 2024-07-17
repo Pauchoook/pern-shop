@@ -1,14 +1,22 @@
 import React from 'react';
-import {useAppSelector} from "../../../hooks/reducer";
+import {useAppDispatch, useAppSelector} from "../../../hooks/reducer";
 import {Button} from "../../../ui";
 import Logo from "./Logo";
 import NavList from "./Navlist";
 import {useNavigate} from "react-router-dom";
 import {paths} from "../../../utils/paths";
+import {userSlice} from "../../../store/reducers/user/UserSlice";
 
 export const Navbar = () => {
   const {isAuth} = useAppSelector(state => state.user);
   const navigate = useNavigate();
+  const {logout} = userSlice.actions;
+  const dispatch = useAppDispatch();
+
+  const onLogout = () => {
+    dispatch(logout());
+    navigate(paths.LOGIN_ROUTE);
+  }
 
   return (
     <nav
@@ -19,7 +27,7 @@ export const Navbar = () => {
           {isAuth ?
             <>
               <Button onClick={() => navigate(paths.ADMIN_ROUTE)}>Admin panel</Button>
-              <Button>Log out</Button>
+              <Button onClick={onLogout}>Log out</Button>
             </>
             :
             <Button onClick={() => navigate(paths.LOGIN_ROUTE)}>Log in</Button>

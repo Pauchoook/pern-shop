@@ -1,6 +1,6 @@
 import {IUser, UserState} from "../../../utils/types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {registration} from "./ActionsCreators";
+import {check, registration} from "./ActionsCreators";
 
 const initialState: UserState = {
   isAuth: false,
@@ -12,12 +12,10 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<IUser>) {
-      state.user = action.payload;
+    logout(state) {
+      state.user = null;
+      state.isAuth = false;
     },
-    setIsAuth(state, action: PayloadAction<boolean>) {
-      state.isAuth = action.payload;
-    }
   },
   extraReducers: (builder) => {
     builder
@@ -28,6 +26,12 @@ export const userSlice = createSlice({
       })
       .addCase(registration.rejected.type, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
+      })
+
+      .addCase(check.fulfilled.type, (state, action: PayloadAction<IUser>) => {
+        state.user = action.payload;
+        state.error = "";
+        state.isAuth = true;
       })
   }
 })
