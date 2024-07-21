@@ -3,6 +3,10 @@ export interface IType {
   name: string;
 }
 
+export interface ICreateTypeBrand {
+  name: string;
+}
+
 export interface IBrand {
   id: number;
   name: string;
@@ -35,4 +39,10 @@ export interface DeviceState {
   types: IType[];
   devices: IDevice[];
   brands: IBrand[],
+}
+
+export interface PaginationState {
+  page: number;
+  totalCount: number;
+  limit: number;
 }

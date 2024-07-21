@@ -45,8 +45,10 @@ export const registration = createAsyncThunk("user/registration", async (user: I
 
 export const login = createAsyncThunk("user/login", async (user: IUser, thunkAPI) => {
   try {
-    const response = await axios.post<IResponseAuth>(`${process.env.REACT_APP_API_URL}/api/user/login`, user);
-    console.log(response)
+    const {data} = await axios.post<IResponseAuth>(`${process.env.REACT_APP_API_URL}/api/user/login`, user);
+    const resUser = jwtDecode(data.token);
+    setCookie("token", data.token, {});
+    return resUser;
   } catch (e: any) {
     return thunkAPI.rejectWithValue(e.response.data.message);
   }

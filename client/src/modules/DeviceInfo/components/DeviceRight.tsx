@@ -23,7 +23,7 @@ const DeviceRight: React.FC<DeviceRightProps> = ({name, price, rating, info}) =>
           <span>{price}</span>
         </div>
       </div>
-      <DeviceSpec infoArr={[]}/>
+      <DeviceSpec infoArr={info}/>
     </div>
   );
 };

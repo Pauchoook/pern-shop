@@ -17,7 +17,7 @@ export const DeviceInfo = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row -mx-4">
           <DeviceLeft img={device?.img || ""}/>
-          <DeviceRight info={device?.info || []} name={device!.name} price={device!.price} rating={device!.rating}/>
+          {device && <DeviceRight info={device?.info || []} name={device!.name} price={device!.price} rating={device!.rating}/>}
         </div>
       </div>
     </div>

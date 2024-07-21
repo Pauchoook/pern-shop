@@ -1,6 +1,6 @@
 import axios, {InternalAxiosRequestConfig} from "axios";
 
-function getCookie(name: string) {
+ export function getCookie(name: string) {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
   ));

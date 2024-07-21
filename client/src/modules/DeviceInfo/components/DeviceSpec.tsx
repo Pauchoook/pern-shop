@@ -10,8 +10,8 @@ const DeviceSpec: React.FC<DeviceSpecProps> = ({infoArr}) => {
     <div>
       <span className="font-bold">Product Description:</span>
       {infoArr.map(info => (
-        <div key={info.id}>
-          <span className="text-sm mt-2 font-bold">{info.title}</span>
+        <div key={info.id} className="flex items-center">
+          <span className="text-sm mt-2 font-bold mr-2">{info.title}:</span>
           <p className="text-sm mt-2">
             {info.description}
           </p>

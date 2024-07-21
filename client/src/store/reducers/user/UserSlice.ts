@@ -1,6 +1,6 @@
 import {IUser, UserState} from "../../../utils/types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {check, registration} from "./ActionsCreators";
+import {check, login, registration} from "./ActionsCreators";
 
 const initialState: UserState = {
   isAuth: false,
@@ -25,6 +25,15 @@ export const userSlice = createSlice({
         state.isAuth = true;
       })
       .addCase(registration.rejected.type, (state, action: PayloadAction<string>) => {
+        state.error = action.payload;
+      })
+
+      .addCase(login.fulfilled.type, (state, action: PayloadAction<IUser>) => {
+        state.user = action.payload;
+        state.error = "";
+        state.isAuth = true;
+      })
+      .addCase(login.rejected.type, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
       })
 
