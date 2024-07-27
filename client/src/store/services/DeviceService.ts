@@ -12,9 +12,9 @@ export const DeviceApi = createApi({
   baseQuery: fetchBaseQuery({baseUrl: `${process.env.REACT_APP_API_URL}/api`}),
   tagTypes: ["Devices", "Types", "Brands"],
   endpoints: (build) => ({
-    getDevices: build.query<IResponseGetDevices, { limit: number }>({
-      query: ({limit}) => ({
-        url: `/device?limit=${limit}`
+    getDevices: build.query<IResponseGetDevices, { limit: number, page: number, typeId: number | null, brandId: number | null }>({
+      query: ({limit, page, typeId, brandId}) => ({
+        url: `/device?limit=${limit}&page=${page}&typeId=${typeId || ""}&brandId=${brandId || ""}`
       }),
       providesTags: ["Devices"]
     }),

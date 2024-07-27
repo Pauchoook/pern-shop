@@ -1,7 +1,6 @@
 import React from 'react';
 import {Brands, Category} from "../modules";
 import {DeviceList} from "../modules";
-import {Pagination} from "../modules";
 
 export const Shop = () => {
   return (
@@ -13,7 +12,6 @@ export const Shop = () => {
           <DeviceList />
         </div>
       </div>
-      <Pagination />
     </div>
   );
 };

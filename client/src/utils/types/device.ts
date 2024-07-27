@@ -25,6 +25,7 @@ export interface IDevice {
   rating: number;
   img: string;
   info?: IInfo[];
+  count?: number
 }
 
 export interface ICreateDevice {
@@ -41,8 +42,9 @@ export interface DeviceState {
   brands: IBrand[],
 }
 
-export interface PaginationState {
+export interface FilterState {
   page: number;
-  totalCount: number;
   limit: number;
+  typeId: number | null;
+  brandId: number | null;
 }

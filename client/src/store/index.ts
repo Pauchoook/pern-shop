@@ -1,12 +1,12 @@
 import userReducer from './reducers/user/UserSlice';
-import paginationReducer from './reducers/pagination/PaginationSlice';
+import filterReducer from './reducers/filter/FilterSlice';
 import {configureStore} from "@reduxjs/toolkit";
 import {DeviceApi} from "./services/DeviceService";
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    pagination: paginationReducer,
+    filter: filterReducer,
     [DeviceApi.reducerPath]: DeviceApi.reducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([DeviceApi.middleware])
